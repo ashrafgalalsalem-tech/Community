@@ -1,0 +1,68 @@
+[
+  {
+    "timestamp": "2026-10-22T15:55:07.985Z",
+    "action": "MEMBER_REGISTER",
+    "performedBy": "concurrent_test@sgh.eg",
+    "details": "Registered member application: Concurrent Test {1..5} (Director - SGH) with initial status: Pending"
+  },
+  {
+    "timestamp": "2026-10-22T15:54:40.676Z",
+    "action": "MEMBER_LOGIN",
+    "performedBy": "tarek.mansour@cairohealth.org",
+    "details": "Member logged in. Status: approved"
+  },
+  {
+    "timestamp": "2026-10-22T15:54:35.339Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "timestamp": "2026-10-22T15:40:35.960Z",
+    "action": "MEMBER_LOGIN",
+    "performedBy": "sarah.alsayed@alexhealth.eg",
+    "details": "Member logged in. Status: rejected"
+  },
+  {
+    "timestamp": "2026-10-22T15:40:32.488Z",
+    "action": "MEMBER_LOGIN",
+    "performedBy": "tarek.mansour@cairohealth.org",
+    "details": "Member logged in. Status: approved"
+  },
+  {
+    "timestamp": "2026-10-22T15:40:28.931Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "timestamp": "2026-10-22T15:40:25.715Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "timestamp": "2026-10-22T15:40:19.247Z",
+    "action": "MEMBER_STATUS_UPDATE",
+    "performedBy": "admin_ashraf",
+    "details": "Updated member Dr. Sarah Al-Sayed (sarah.alsayed@alexhealth.eg) status to rejected."
+  },
+  {
+    "timestamp": "2026-10-22T15:40:10.647Z",
+    "action": "MEMBER_REGISTER",
+    "performedBy": "sarah.alsayed@alexhealth.eg",
+    "details": "Registered member application: Dr. Sarah Al-Sayed (Head of Clinical Learning - Alexandria Healthcare Group) with initial status: Pending"
+  },
+  {
+    "timestamp": "2026-10-22T15:40:02.809Z",
+    "action": "MEMBER_STATUS_UPDATE",
+    "performedBy": "admin_ashraf",
+    "details": "Updated member Dr. Tarek Mansour (tarek.mansour@cairohealth.org) status to approved."
+  },
+  {
+    "timestamp": "2026-10-22T15:38:36.468Z",
+    "action": "MEMBER_REGISTER",
+    "performedBy": "tarek.mansour@cairohealth.org",
+    "details": "Registered member application: Dr. Tarek Mansour (Director of Human Capital & Talent - Cairo Medical City) with initial status: Pending"
+  }
+]

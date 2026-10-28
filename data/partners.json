@@ -1,0 +1,80 @@
+[
+  {
+    "id": "partner_jci",
+    "organizationName": "Joint Commission International (JCI)",
+    "logoUrl": "/assets/aistudio/logo_hospital_egypt_copy-05_43a268db.png",
+    "relationshipType": "Hospital Network Accreditation",
+    "description": "Gold standard global hospital accreditation held by Saudi German Hospital Cairo for international clinical excellence, governance, and patient safety.",
+    "verificationStatus": "verified",
+    "displayOrder": 1,
+    "isActive": true,
+    "websiteUrl": "https://www.jointcommissioninternational.org",
+    "verifiedAt": "2026-10-20T00:00:00.000Z",
+    "verifiedBy": "Clinical Governance Board"
+  },
+  {
+    "id": "partner_temos",
+    "organizationName": "TEMOS International",
+    "logoUrl": "/assets/aistudio/logo_hospital_egypt_copy-05_43a268db.png",
+    "relationshipType": "Clinical Governance Certification",
+    "description": "International quality certification for healthcare management, medical tourism, and international patient care excellence held by Saudi German Health Egypt.",
+    "verificationStatus": "verified",
+    "displayOrder": 2,
+    "isActive": true,
+    "websiteUrl": "https://www.temos-international.com",
+    "verifiedAt": "2026-10-20T00:00:00.000Z",
+    "verifiedBy": "Clinical Governance Board"
+  },
+  {
+    "id": "partner_canada",
+    "organizationName": "Canadian Accreditation",
+    "logoUrl": "/assets/aistudio/logo_hospital_egypt_copy-05_43a268db.png",
+    "relationshipType": "Hospital Network Accreditation",
+    "description": "Global healthcare standards benchmarking and institutional quality management system assessment.",
+    "verificationStatus": "verified",
+    "displayOrder": 3,
+    "isActive": true,
+    "websiteUrl": "https://accreditation.ca",
+    "verifiedAt": "2026-10-20T00:00:00.000Z",
+    "verifiedBy": "Clinical Governance Board"
+  },
+  {
+    "id": "partner_royal_college",
+    "organizationName": "Royal College",
+    "logoUrl": "/assets/aistudio/logo_hospital_egypt_copy-05_43a268db.png",
+    "relationshipType": "Academic & Educational Partner",
+    "description": "Prestigious institutional collaboration in medical workforce development, specialized clinical training, and professional leadership standards.",
+    "verificationStatus": "verified",
+    "displayOrder": 4,
+    "isActive": true,
+    "websiteUrl": "https://www.royalcollege.ca",
+    "verifiedAt": "2026-10-20T00:00:00.000Z",
+    "verifiedBy": "Clinical Governance Board"
+  },
+  {
+    "id": "partner_ahe",
+    "organizationName": "Association for the Healthcare Environment (AHE)",
+    "logoUrl": "/assets/aistudio/logo_hospital_egypt_copy-05_43a268db.png",
+    "relationshipType": "Professional Healthcare Association",
+    "description": "Professional authority dedicated to optimizing healthcare environments, infection control protocols, and clinical operations excellence.",
+    "verificationStatus": "verified",
+    "displayOrder": 5,
+    "isActive": true,
+    "websiteUrl": "https://www.ahe.org",
+    "verifiedAt": "2026-10-20T00:00:00.000Z",
+    "verifiedBy": "Clinical Governance Board"
+  },
+  {
+    "id": "partner_sgh_academy",
+    "organizationName": "Saudi German Academy",
+    "logoUrl": "/assets/aistudio/logo_hospital_egypt_copy-01_e8873238.png",
+    "relationshipType": "Academic & Educational Partner",
+    "description": "Premier executive education arm of Saudi German Health, offering healthcare leadership development, continuous professional education, and fellowships.",
+    "verificationStatus": "verified",
+    "displayOrder": 6,
+    "isActive": true,
+    "websiteUrl": "https://sghgroup.com.eg",
+    "verifiedAt": "2026-10-20T00:00:00.000Z",
+    "verifiedBy": "Clinical Governance Board"
+  }
+]

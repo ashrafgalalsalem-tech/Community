@@ -1,0 +1,227 @@
+{
+  "entities": {
+    "Member": {
+      "title": "Member",
+      "description": "Public profile and membership record for healthcare leadership executives.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "fullName": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "professionalEmail": { "type": "string", "maxLength": 120, "pattern": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$" },
+        "jobTitle": { "type": "string", "minLength": 2, "maxLength": 120 },
+        "organization": { "type": "string", "minLength": 2, "maxLength": 150 },
+        "specialty": { "type": "string", "minLength": 2, "maxLength": 100 },
+        "bio": { "type": "string", "maxLength": 1000 },
+        "profilePhotoUrl": { "type": "string", "maxLength": 500 },
+        "role": { "type": "string", "enum": ["visitor", "pending_member", "approved_member", "administrator"] },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected", "suspended"] },
+        "joinedAt": { "type": "string", "maxLength": 64 },
+        "approvedAt": { "type": "string", "maxLength": 64 },
+        "reviewedBy": { "type": "string", "maxLength": 128 },
+        "consentDirectoryDisplay": { "type": "boolean" },
+        "consentPhotoPublish": { "type": "boolean" },
+        "consentFutureCommunications": { "type": "boolean" }
+      },
+      "required": ["id", "fullName", "professionalEmail", "jobTitle", "organization", "specialty", "role", "status", "joinedAt", "consentDirectoryDisplay", "consentPhotoPublish", "consentFutureCommunications"]
+    },
+    "MemberPrivate": {
+      "title": "MemberPrivate",
+      "description": "Sensitive personally identifiable information (phone, verification) isolated from public access.",
+      "type": "object",
+      "properties": {
+        "memberId": { "type": "string", "maxLength": 128 },
+        "phone": { "type": "string", "maxLength": 40 },
+        "notes": { "type": "string", "maxLength": 1000 },
+        "emailVerified": { "type": "boolean" },
+        "lastLoginAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["memberId", "emailVerified", "lastLoginAt"]
+    },
+    "Admin": {
+      "title": "Admin",
+      "description": "Trusted administrative privilege document for hospital governance members.",
+      "type": "object",
+      "properties": {
+        "adminId": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 120 },
+        "grantedAt": { "type": "string", "maxLength": 64 },
+        "grantedBy": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["adminId", "email", "grantedAt"]
+    },
+    "Round": {
+      "title": "Round",
+      "description": "Executive Healthcare Leadership Round, clinical roundtable, or symposium.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "minLength": 5, "maxLength": 200 },
+        "topic": { "type": "string", "minLength": 3, "maxLength": 200 },
+        "description": { "type": "string", "minLength": 10, "maxLength": 4000 },
+        "scheduledDate": { "type": "string", "maxLength": 64 },
+        "scheduledTime": { "type": "string", "maxLength": 30 },
+        "durationMinutes": { "type": "number" },
+        "venue": { "type": "string", "maxLength": 250 },
+        "venueType": { "type": "string", "enum": ["in_person", "hybrid", "virtual"] },
+        "virtualLink": { "type": "string", "maxLength": 500 },
+        "maxCapacity": { "type": "number" },
+        "currentRegistrationsCount": { "type": "number" },
+        "status": { "type": "string", "enum": ["draft", "published", "closed", "archived"] },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "isFirstAdminConfirmedRound": { "type": "boolean" }
+      },
+      "required": ["id", "title", "topic", "description", "scheduledDate", "venue", "venueType", "status", "currentRegistrationsCount", "createdAt"]
+    },
+    "Registration": {
+      "title": "Registration",
+      "description": "Pre-event RSVP submitted by an approved member for a specific leadership round.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "roundId": { "type": "string", "maxLength": 128 },
+        "memberId": { "type": "string", "maxLength": 128 },
+        "memberName": { "type": "string", "maxLength": 120 },
+        "memberTitle": { "type": "string", "maxLength": 120 },
+        "memberOrg": { "type": "string", "maxLength": 150 },
+        "memberEmail": { "type": "string", "maxLength": 120 },
+        "status": { "type": "string", "enum": ["registered", "waitlisted", "cancelled"] },
+        "registeredAt": { "type": "string", "maxLength": 64 },
+        "notes": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["id", "roundId", "memberId", "memberName", "memberTitle", "memberOrg", "memberEmail", "status", "registeredAt"]
+    },
+    "Attendance": {
+      "title": "Attendance",
+      "description": "Admin-verified post-event actual presence record for attendance gallery and CME credits.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "roundId": { "type": "string", "maxLength": 128 },
+        "memberId": { "type": "string", "maxLength": 128 },
+        "memberName": { "type": "string", "maxLength": 120 },
+        "memberTitle": { "type": "string", "maxLength": 120 },
+        "memberOrg": { "type": "string", "maxLength": 150 },
+        "memberPhotoUrl": { "type": "string", "maxLength": 500 },
+        "attended": { "type": "boolean" },
+        "consentPhotoPublish": { "type": "boolean" },
+        "verifiedAt": { "type": "string", "maxLength": 64 },
+        "verifiedByAdminId": { "type": "string", "maxLength": 128 },
+        "cmeCreditsEarned": { "type": "number" },
+        "notes": { "type": "string", "maxLength": 500 }
+      },
+      "required": ["id", "roundId", "memberId", "memberName", "attended", "consentPhotoPublish", "cmeCreditsEarned"]
+    },
+    "Topic": {
+      "title": "Topic",
+      "description": "Executive discussion or strategic insight submitted by approved healthcare leaders.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "minLength": 5, "maxLength": 200 },
+        "category": { "type": "string", "enum": ["Workforce Strategy", "Talent & Retention", "Leadership Development", "Employee Experience", "Digital Transformation & AI", "Quality & Patient Safety", "Healthcare Innovation"] },
+        "body": { "type": "string", "minLength": 10, "maxLength": 10000 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "authorName": { "type": "string", "maxLength": 120 },
+        "authorTitle": { "type": "string", "maxLength": 120 },
+        "authorOrg": { "type": "string", "maxLength": 150 },
+        "authorPhotoUrl": { "type": "string", "maxLength": 500 },
+        "status": { "type": "string", "enum": ["pending_review", "approved", "rejected", "pinned", "hidden"] },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "publishedAt": { "type": "string", "maxLength": 64 },
+        "likeCount": { "type": "number" },
+        "dislikeCount": { "type": "number" },
+        "commentCount": { "type": "number" }
+      },
+      "required": ["id", "title", "category", "body", "authorId", "authorName", "authorTitle", "authorOrg", "status", "createdAt", "likeCount", "dislikeCount", "commentCount"]
+    },
+    "TopicReaction": {
+      "title": "TopicReaction",
+      "description": "Single changeable or removable Like or Dislike reaction per member per topic.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "topicId": { "type": "string", "maxLength": 128 },
+        "memberId": { "type": "string", "maxLength": 128 },
+        "type": { "type": "string", "enum": ["like", "dislike"] },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "topicId", "memberId", "type", "createdAt", "updatedAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Executive commentary and peer reflections on approved leadership topics.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "topicId": { "type": "string", "maxLength": 128 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "authorName": { "type": "string", "maxLength": 120 },
+        "authorTitle": { "type": "string", "maxLength": 120 },
+        "authorOrg": { "type": "string", "maxLength": 150 },
+        "authorPhotoUrl": { "type": "string", "maxLength": 500 },
+        "content": { "type": "string", "minLength": 2, "maxLength": 2000 },
+        "status": { "type": "string", "enum": ["approved", "pending_moderation", "hidden"] },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "topicId", "authorId", "authorName", "content", "status", "createdAt"]
+    },
+    "ConsentRecord": {
+      "title": "ConsentRecord",
+      "description": "Recorded legal and professional consent for directory display, photos, and communications.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "memberId": { "type": "string", "maxLength": 128 },
+        "consentDirectoryDisplay": { "type": "boolean" },
+        "consentPhotoPublish": { "type": "boolean" },
+        "consentFutureCommunications": { "type": "boolean" },
+        "version": { "type": "string", "maxLength": 20 },
+        "acceptedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "memberId", "consentDirectoryDisplay", "consentPhotoPublish", "consentFutureCommunications", "version", "acceptedAt"]
+    }
+  },
+  "firestore": {
+    "/members/{memberId}": {
+      "schema": { "$ref": "#/entities/Member" },
+      "description": "Profiles for registered executives. Public fields visible only to approved members if consentDirectoryDisplay is true."
+    },
+    "/members/{memberId}/private/info": {
+      "schema": { "$ref": "#/entities/MemberPrivate" },
+      "description": "PII isolation subcollection strictly accessible only by the owner or administrator."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/Admin" },
+      "description": "Trusted administrator list for hospital leadership administrators (Ashrafgalalsalem@gmail.com bootstrapped)."
+    },
+    "/rounds/{roundId}": {
+      "schema": { "$ref": "#/entities/Round" },
+      "description": "Executive Leadership Rounds. Published rounds are publicly readable; create/edit reserved for admins."
+    },
+    "/rounds/{roundId}/registrations/{registrationId}": {
+      "schema": { "$ref": "#/entities/Registration" },
+      "description": "RSVPs for a specific round. Registrant can read/cancel their own; admins can view all and export."
+    },
+    "/rounds/{roundId}/attendance/{attendanceId}": {
+      "schema": { "$ref": "#/entities/Attendance" },
+      "description": "Actual verified attendance. Gallery visible to authenticated approved members ONLY if attended=true AND consentPhotoPublish=true."
+    },
+    "/topics/{topicId}": {
+      "schema": { "$ref": "#/entities/Topic" },
+      "description": "Leadership insights & think tank topics. Approved topics publicly readable; approved members can submit."
+    },
+    "/topics/{topicId}/reactions/{reactionId}": {
+      "schema": { "$ref": "#/entities/TopicReaction" },
+      "description": "One changeable like/dislike per authenticated approved member per topic."
+    },
+    "/topics/{topicId}/comments/{commentId}": {
+      "schema": { "$ref": "#/entities/Comment" },
+      "description": "Approved comments on topics are publicly readable; approved members can submit."
+    },
+    "/consents/{consentId}": {
+      "schema": { "$ref": "#/entities/ConsentRecord" },
+      "description": "Immutable log of consent acceptances for compliance auditing."
+    }
+  }
+}

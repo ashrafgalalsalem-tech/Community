@@ -1,0 +1,62 @@
+[
+  {
+    "id": "benefit_academy_courses",
+    "title": "Saudi German Academy Course Reductions",
+    "category": "Academy & Education",
+    "description": "Exclusive member discounts on select healthcare management diplomas, clinical leadership courses, and healthcare workforce certifications.",
+    "conditions": "Subject to course seat availability, cohort enrollment dates, and specific academic prerequisites as established by Saudi German Academy.",
+    "iconName": "GraduationCap",
+    "displayOrder": 1,
+    "isActive": true
+  },
+  {
+    "id": "benefit_training_programs",
+    "title": "Discounts on Eligible Training Programs",
+    "category": "Professional Development",
+    "description": "Preferential registration rates for executive masterclasses, hospital operational excellence tracks, and healthcare human capital training.",
+    "conditions": "Applies to accredited programs designated by the community secretariat. Verification of active approved membership required.",
+    "iconName": "Award",
+    "displayOrder": 2,
+    "isActive": true
+  },
+  {
+    "id": "benefit_partner_offers",
+    "title": "Special Offers from Participating Organizations",
+    "category": "Institutional Collaboration",
+    "description": "Special access privileges, educational materials, and institutional offerings from participating universities, associations, and healthcare partners.",
+    "conditions": "Offerings vary by participating partner institution and are subject to respective bilateral institutional guidelines.",
+    "iconName": "Building2",
+    "displayOrder": 3,
+    "isActive": true
+  },
+  {
+    "id": "benefit_executive_networking",
+    "title": "Executive Healthcare Peer Connections",
+    "category": "Executive Networking",
+    "description": "Direct networking with hospital directors, CMOs, CHROs, healthcare executives, and department heads across Egypt and the MENA region.",
+    "conditions": "Restricted strictly to verified, approved healthcare leadership members via the secure Members Directory.",
+    "iconName": "Users",
+    "displayOrder": 4,
+    "isActive": true
+  },
+  {
+    "id": "benefit_knowledge_exchange",
+    "title": "Professional Knowledge & Workforce Strategy Exchange",
+    "category": "Professional Development",
+    "description": "Access to curated leadership toolkits, strategic human capital frameworks, employee retention case studies, and confidential peer roundtables.",
+    "conditions": "Member submissions and forum interactions are governed by medical leadership ethics and strict confidentiality standards.",
+    "iconName": "BookOpen",
+    "displayOrder": 5,
+    "isActive": true
+  },
+  {
+    "id": "benefit_roundtables_summits",
+    "title": "Invitations to Executive Roundtables & Summits",
+    "category": "Leadership Roundtables",
+    "description": "Guaranteed invitations and priority seat reservations for executive roundtables, summits, and collaborative healthcare initiatives.",
+    "conditions": "Venue capacity is limited to maintain interactive leadership dialogue (in-person attendance capped per round).",
+    "iconName": "Calendar",
+    "displayOrder": 6,
+    "isActive": true
+  }
+]

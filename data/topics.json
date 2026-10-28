@@ -1,0 +1,63 @@
+[
+  {
+    "id": "top_workforce_resilience",
+    "title": "Hospital Workforce Retention & Combating Clinical Brain Drain",
+    "category": "Healthcare Workforce Development",
+    "body": "With escalating international migration of skilled physicians, specialized ICU nurses, and clinical leaders, Egyptian hospitals face unprecedented retention challenges. At our institutions, we have piloted dual-track leadership development programs, structured CME incentives, and flexible clinical governance schedules to preserve institutional expertise. We invite fellow Chief Executive Officers and Medical Directors to share quantifiable strategies that have reduced clinical turnover in their hospital networks.",
+    "authorId": "admin_ashraf",
+    "authorName": "Prof. Dr. Ashraf Galal Salem",
+    "authorTitle": "Executive Director & Chief Medical Officer",
+    "authorOrg": "Healthcare Leadership Community",
+    "status": "pinned",
+    "createdAt": "2026-10-21T09:00:00.000Z",
+    "publishedAt": "2026-10-21T09:00:00.000Z",
+    "likeCount": 18,
+    "dislikeCount": 1,
+    "commentCount": 2,
+    "tags": [
+      "Retention",
+      "Workforce",
+      "Governance"
+    ]
+  },
+  {
+    "id": "top_digital_health_governance",
+    "title": "Integrating Clinical AI Tools into Hospital Governance & Safety Frameworks",
+    "category": "Organizational Effectiveness",
+    "body": "As artificial intelligence enters diagnostic triaging, predictive pathology, and ICU early-warning systems, hospital leadership must define clear accountability matrices. Who is legally and ethically responsible when algorithmic recommendations conflict with consultant judgment? Establishing an institutional AI Ethics & Clinical Governance Board is no longer optional—it is a cornerstone for patient safety and institutional accreditation.",
+    "authorId": "mem_tarek_mansour",
+    "authorName": "Dr. Tarek Mansour",
+    "authorTitle": "Director of Clinical Quality & Patient Safety",
+    "authorOrg": "Specialized Hospitals Network",
+    "status": "approved",
+    "createdAt": "2026-10-22T11:30:00.000Z",
+    "publishedAt": "2026-10-22T11:30:00.000Z",
+    "likeCount": 12,
+    "dislikeCount": 0,
+    "commentCount": 1,
+    "tags": [
+      "AI Governance",
+      "Patient Safety",
+      "Accreditation"
+    ]
+  },
+  {
+    "id": "top_executive_compensation",
+    "title": "Benchmarking Executive Compensation and Clinical KPI Alignment",
+    "category": "Human Capital Management",
+    "body": "Aligning executive compensation structures with patient safety outcomes, clinical audit compliance, and staff retention rates rather than pure financial metrics. Proposal for an executive working group to benchmark standards across regional hospital operators.",
+    "authorId": "mem_mona_hegazy",
+    "authorName": "Dr. Mona Hegazy",
+    "authorTitle": "Head of Digital Health & Strategy",
+    "authorOrg": "Digital Health Expert Council",
+    "status": "pending",
+    "createdAt": "2026-10-24T14:15:00.000Z",
+    "likeCount": 0,
+    "dislikeCount": 0,
+    "commentCount": 0,
+    "tags": [
+      "Executive KPIs",
+      "Human Capital"
+    ]
+  }
+]

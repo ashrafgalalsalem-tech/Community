@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #008765;
+    --color-primary-dark: #006B52;
+    --color-secondary: #0094D9;
+    --color-secondary-dark: #0284C7;
+    --color-canvas: #F8FAFC;
+    --color-text-primary: #0F172A;
+    --color-text-secondary: #334155;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Cairo', system-ui, -apple-system, sans-serif;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Outfit', 'Cairo', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .font-brand-arabic {
+    font-family: 'Cairo', system-ui, sans-serif;
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid #008765;
+    outline-offset: 2px;
+  }
+
+  /* Executive text selection */
+  ::selection {
+    background-color: #008765;
+    color: #FFFFFF;
+  }
+}
+
+/* Tabular figures for alignment in dates, counters, and statistics */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Crisp light scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}

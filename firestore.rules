@@ -1,0 +1,384 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // =========================================================================
+    // GLOBAL DEFAULT-DENY SAFETY NET
+    // =========================================================================
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // =========================================================================
+    // CORE AUTHENTICATION & RBAC PRIMITIVES
+    // =========================================================================
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // Trusted Admin Bootstrap: Root email + database-backed admins collection
+    function isAdmin() {
+      return isSignedIn() && (
+        (request.auth.token.email == 'Ashrafgalalsalem@gmail.com' && request.auth.token.email_verified == true) ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isApprovedMember() {
+      return isSignedIn() && (
+        isAdmin() ||
+        (exists(/databases/$(database)/documents/members/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/members/$(request.auth.uid)).data.status == 'approved')
+      );
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    // =========================================================================
+    // ENTITY VALIDATION HELPERS (ANTI-UPDATE-GAP)
+    // =========================================================================
+
+    function isValidMemberData(data) {
+      return data.keys().hasAll([
+        'id', 'fullName', 'professionalEmail', 'jobTitle', 'organization',
+        'specialty', 'role', 'status', 'joinedAt',
+        'consentDirectoryDisplay', 'consentPhotoPublish', 'consentFutureCommunications'
+      ]) &&
+      data.keys().hasOnly([
+        'id', 'fullName', 'professionalEmail', 'jobTitle', 'organization',
+        'specialty', 'bio', 'profilePhotoUrl', 'role', 'status', 'joinedAt',
+        'approvedAt', 'reviewedBy',
+        'consentDirectoryDisplay', 'consentPhotoPublish', 'consentFutureCommunications'
+      ]) &&
+      data.id is string && isValidId(data.id) &&
+      data.fullName is string && data.fullName.size() >= 2 && data.fullName.size() <= 120 &&
+      data.professionalEmail is string && data.professionalEmail.size() <= 120 &&
+      data.jobTitle is string && data.jobTitle.size() >= 2 && data.jobTitle.size() <= 120 &&
+      data.organization is string && data.organization.size() >= 2 && data.organization.size() <= 150 &&
+      data.specialty is string && data.specialty.size() >= 2 && data.specialty.size() <= 100 &&
+      data.role in ['visitor', 'pending_member', 'approved_member', 'administrator'] &&
+      data.status in ['pending', 'approved', 'rejected', 'suspended'] &&
+      data.consentDirectoryDisplay is bool &&
+      data.consentPhotoPublish is bool &&
+      data.consentFutureCommunications is bool &&
+      (!('bio' in data) || (data.bio is string && data.bio.size() <= 1000)) &&
+      (!('profilePhotoUrl' in data) || (data.profilePhotoUrl is string && data.profilePhotoUrl.size() <= 500));
+    }
+
+    function isValidMemberPrivateData(data) {
+      return data.keys().hasAll(['memberId', 'emailVerified', 'lastLoginAt']) &&
+      data.keys().hasOnly(['memberId', 'phone', 'notes', 'emailVerified', 'lastLoginAt']) &&
+      data.memberId is string && isValidId(data.memberId) &&
+      data.emailVerified is bool &&
+      (!('phone' in data) || (data.phone is string && data.phone.size() <= 40)) &&
+      (!('notes' in data) || (data.notes is string && data.notes.size() <= 1000));
+    }
+
+    function isValidRoundData(data) {
+      return data.keys().hasAll([
+        'id', 'title', 'topic', 'description', 'scheduledDate',
+        'venue', 'venueType', 'status', 'currentRegistrationsCount', 'createdAt'
+      ]) &&
+      data.id is string && isValidId(data.id) &&
+      data.title is string && data.title.size() >= 5 && data.title.size() <= 200 &&
+      data.topic is string && data.topic.size() >= 3 && data.topic.size() <= 200 &&
+      data.description is string && data.description.size() >= 10 && data.description.size() <= 4000 &&
+      data.status in ['draft', 'published', 'closed', 'archived'] &&
+      data.venueType in ['in_person', 'hybrid', 'virtual'] &&
+      data.currentRegistrationsCount is number && data.currentRegistrationsCount >= 0;
+    }
+
+    function isValidRegistrationData(data, roundId) {
+      return data.keys().hasAll([
+        'id', 'roundId', 'memberId', 'memberName', 'memberTitle',
+        'memberOrg', 'memberEmail', 'status', 'registeredAt'
+      ]) &&
+      data.id is string && isValidId(data.id) &&
+      data.roundId == roundId &&
+      data.memberId == request.auth.uid &&
+      data.status in ['registered', 'waitlisted', 'cancelled'] &&
+      data.memberName is string && data.memberName.size() <= 120;
+    }
+
+    function isValidAttendanceData(data, roundId) {
+      return data.keys().hasAll([
+        'id', 'roundId', 'memberId', 'memberName',
+        'attended', 'consentPhotoPublish', 'cmeCreditsEarned'
+      ]) &&
+      data.id is string && isValidId(data.id) &&
+      data.roundId == roundId &&
+      data.attended is bool &&
+      data.consentPhotoPublish is bool &&
+      data.cmeCreditsEarned is number;
+    }
+
+    function isValidTopicData(data) {
+      return data.keys().hasAll([
+        'id', 'title', 'category', 'body', 'authorId',
+        'authorName', 'authorTitle', 'authorOrg', 'status',
+        'createdAt', 'likeCount', 'dislikeCount', 'commentCount'
+      ]) &&
+      data.id is string && isValidId(data.id) &&
+      data.title is string && data.title.size() >= 5 && data.title.size() <= 200 &&
+      data.category in [
+        'Workforce Strategy', 'Talent & Retention', 'Leadership Development',
+        'Employee Experience', 'Digital Transformation & AI',
+        'Quality & Patient Safety', 'Healthcare Innovation'
+      ] &&
+      data.body is string && data.body.size() >= 10 && data.body.size() <= 10000 &&
+      data.authorId == request.auth.uid &&
+      data.status in ['pending_review', 'approved', 'rejected', 'pinned', 'hidden'] &&
+      data.likeCount is number && data.dislikeCount is number && data.commentCount is number;
+    }
+
+    function isValidCommentData(data, topicId) {
+      return data.keys().hasAll([
+        'id', 'topicId', 'authorId', 'authorName', 'content', 'status', 'createdAt'
+      ]) &&
+      data.id is string && isValidId(data.id) &&
+      data.topicId == topicId &&
+      data.authorId == request.auth.uid &&
+      data.content is string && data.content.size() >= 2 && data.content.size() <= 2000 &&
+      data.status in ['approved', 'pending_moderation', 'hidden'];
+    }
+
+    function isValidReactionData(data, topicId) {
+      return data.keys().hasAll(['id', 'topicId', 'memberId', 'type', 'createdAt', 'updatedAt']) &&
+      data.id is string && isValidId(data.id) &&
+      data.topicId == topicId &&
+      data.memberId == request.auth.uid &&
+      data.type in ['like', 'dislike'];
+    }
+
+    // =========================================================================
+    // ADMINS COLLECTION
+    // =========================================================================
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // =========================================================================
+    // MEMBERS COLLECTION
+    // =========================================================================
+    match /members/{memberId} {
+      // Direct get: Owner or Admin, OR approved member viewing another approved member
+      allow get: if isValidId(memberId) && (
+        isOwner(memberId) ||
+        isAdmin() ||
+        (isApprovedMember() && resource.data.status == 'approved' && resource.data.consentDirectoryDisplay == true)
+      );
+
+      // List queries:
+      // Admins can list all.
+      // Approved members can query ONLY members who have status == 'approved' AND consentDirectoryDisplay == true.
+      allow list: if isAdmin() || (
+        isApprovedMember() &&
+        resource.data.status == 'approved' &&
+        resource.data.consentDirectoryDisplay == true
+      );
+
+      // Creation: Authenticated user creating their own registration profile
+      // MUST default to status: 'pending' and role: 'pending_member'. No self-admin!
+      allow create: if isValidId(memberId) &&
+        isOwner(memberId) &&
+        isValidMemberData(incoming()) &&
+        incoming().id == memberId &&
+        (isAdmin() || (incoming().status == 'pending' && incoming().role == 'pending_member'));
+
+      // Updates:
+      // Admin can update anything valid (including status and role approvals).
+      // Member can only update their own profile fields (name, title, specialty, bio, photo, consents)
+      // and CANNOT alter status, role, or approval fields.
+      allow update: if isValidId(memberId) &&
+        isValidMemberData(incoming()) &&
+        incoming().id == existing().id &&
+        incoming().joinedAt == existing().joinedAt && (
+          isAdmin() || (
+            isOwner(memberId) &&
+            incoming().status == existing().status &&
+            incoming().role == existing().role &&
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+              'fullName', 'jobTitle', 'organization', 'specialty', 'bio',
+              'profilePhotoUrl', 'consentDirectoryDisplay', 'consentPhotoPublish',
+              'consentFutureCommunications'
+            ])
+          )
+        );
+
+      allow delete: if isAdmin();
+
+      // PII Split Subcollection (Pillar 6)
+      match /private/{infoDoc} {
+        allow read, write: if isValidId(memberId) && (isOwner(memberId) || isAdmin()) &&
+          (request.method != 'create' && request.method != 'update' || isValidMemberPrivateData(incoming()));
+      }
+    }
+
+    // =========================================================================
+    // ROUNDS COLLECTION
+    // =========================================================================
+    match /rounds/{roundId} {
+      // Published, closed, and archived rounds are publicly readable
+      allow read: if isValidId(roundId) && (
+        resource.data.status in ['published', 'closed', 'archived'] || isAdmin()
+      );
+
+      // Only administrators can create, edit, or archive rounds
+      allow create: if isValidId(roundId) && isAdmin() && isValidRoundData(incoming());
+      allow update: if isValidId(roundId) && isAdmin() && isValidRoundData(incoming());
+      allow delete: if isValidId(roundId) && isAdmin();
+
+      // Subcollection: Registrations (RSVPs)
+      match /registrations/{registrationId} {
+        allow get: if isValidId(registrationId) && (
+          isOwner(resource.data.memberId) || isAdmin()
+        );
+
+        // List: Admin can view all. Member can list only their own registrations.
+        allow list: if isAdmin() || (
+          isSignedIn() && resource.data.memberId == request.auth.uid
+        );
+
+        // Creation: Only approved members can RSVP; registration memberId must match auth.uid
+        allow create: if isValidId(registrationId) &&
+          isApprovedMember() &&
+          isValidRegistrationData(incoming(), roundId);
+
+        // Update: Member can cancel own; admin can manage
+        allow update: if isValidId(registrationId) && (
+          isAdmin() || (
+            isOwner(existing().memberId) &&
+            incoming().memberId == existing().memberId &&
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'notes'])
+          )
+        );
+
+        allow delete: if isAdmin() || isOwner(existing().memberId);
+      }
+
+      // Subcollection: Attendance
+      match /attendance/{attendanceId} {
+        // Attendees Gallery Privacy Invariant:
+        // Visible to authenticated approved members ONLY IF attended == true AND consentPhotoPublish == true.
+        // Admins can view all attendance records.
+        allow read: if isValidId(attendanceId) && (
+          isAdmin() || (
+            isApprovedMember() &&
+            resource.data.attended == true &&
+            resource.data.consentPhotoPublish == true
+          )
+        );
+
+        // Only administrators can record or verify attendance
+        allow create, update, delete: if isValidId(attendanceId) &&
+          isAdmin() &&
+          (request.method == 'delete' || isValidAttendanceData(incoming(), roundId));
+      }
+    }
+
+    // =========================================================================
+    // LEADERSHIP INSIGHTS & DISCUSSIONS (TOPICS)
+    // =========================================================================
+    match /topics/{topicId} {
+      // Public reading: Approved or Pinned topics are publicly readable
+      allow read: if isValidId(topicId) && (
+        resource.data.status in ['approved', 'pinned'] ||
+        isAdmin() ||
+        (isSignedIn() && resource.data.authorId == request.auth.uid)
+      );
+
+      // Creation: Only authenticated approved members can submit topics
+      // Submitted topics default to status: 'pending_review'
+      allow create: if isValidId(topicId) &&
+        isApprovedMember() &&
+        isValidTopicData(incoming()) &&
+        (isAdmin() || incoming().status == 'pending_review');
+
+      // Update:
+      // Admins can moderate (approve, reject, pin, hide).
+      // Authors can update body/title while pending, or increment counts via atomic rules.
+      allow update: if isValidId(topicId) && (
+        isAdmin() || (
+          isOwner(existing().authorId) &&
+          existing().status == 'pending_review' &&
+          incoming().status == 'pending_review' &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title', 'category', 'body'])
+        ) || (
+          // Reactions/Comments counter update gate
+          isSignedIn() &&
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likeCount', 'dislikeCount', 'commentCount'])
+        )
+      );
+
+      allow delete: if isAdmin();
+
+      // Subcollection: Reactions (1 like/dislike per member per topic)
+      match /reactions/{reactionId} {
+        allow read: if isSignedIn();
+
+        allow create, update: if isValidId(reactionId) &&
+          isApprovedMember() &&
+          reactionId == request.auth.uid &&
+          isValidReactionData(incoming(), topicId);
+
+        allow delete: if isSignedIn() && (existing().memberId == request.auth.uid || isAdmin());
+      }
+
+      // Subcollection: Comments
+      match /comments/{commentId} {
+        allow read: if isValidId(commentId) && (
+          resource.data.status == 'approved' ||
+          isAdmin() ||
+          (isSignedIn() && resource.data.authorId == request.auth.uid)
+        );
+
+        allow create: if isValidId(commentId) &&
+          isApprovedMember() &&
+          isValidCommentData(incoming(), topicId);
+
+        allow update: if isValidId(commentId) && (
+          isAdmin() || (
+            isOwner(existing().authorId) &&
+            request.resource.data.diff(resource.data).affectedKeys().hasOnly(['content'])
+          )
+        );
+
+        allow delete: if isAdmin() || isOwner(existing().authorId);
+      }
+    }
+
+    // =========================================================================
+    // CONSENT RECORDS
+    // =========================================================================
+    match /consents/{consentId} {
+      allow read: if isValidId(consentId) && (
+        isOwner(resource.data.memberId) || isAdmin()
+      );
+
+      allow create: if isValidId(consentId) &&
+        isSignedIn() &&
+        incoming().memberId == request.auth.uid;
+
+      allow update, delete: if false; // Consents are immutable audit logs
+    }
+  }
+}

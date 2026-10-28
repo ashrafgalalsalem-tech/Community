@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-10-22T16:01:52.186Z",
+  "sourceFiles": {
+    "members": "/app/applet/data/members.json",
+    "private": "/app/applet/data/private.json",
+    "audit": "/app/applet/data/audit.json"
+  },
+  "backupPath": "/app/applet/data/backup/pre_firestore_migration",
+  "counts": {
+    "membersCount": 3,
+    "privateCredsCount": 3,
+    "auditLogsCount": 11
+  },
+  "validations": {
+    "allMembersHaveValidStatus": true,
+    "allEmailsUnique": true,
+    "credentialsSeparatedAndHashed": true,
+    "zeroPlaintextPasswords": true,
+    "rootAdminPreserved": true
+  },
+  "collectionsPlanned": {
+    "members": 3,
+    "members_private": 3,
+    "audit_logs": 11
+  },
+  "conflicts": [],
+  "status": "READY"
+}

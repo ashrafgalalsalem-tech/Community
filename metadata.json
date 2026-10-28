@@ -1,0 +1,8 @@
+{
+  "name": "Healthcare Leadership Community",
+  "description": "Healthcare Leadership Community — An executive healthcare leadership community for peer rounds, strategic discussions, registrations, and collaborative medical leadership.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

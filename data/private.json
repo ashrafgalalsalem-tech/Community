@@ -1,0 +1,28 @@
+{
+  "admin_ashraf": {
+    "memberId": "admin_ashraf",
+    "username": "admin",
+    "emailVerified": true,
+    "lastLoginAt": "2026-10-20T00:00:00.000Z",
+    "salt": "db75762d1254b1f0d897ab9623ef226e",
+    "passwordHash": "79f6e664bde16af50c4db045b6d4d084005dced687a6867ef8291e86dbcaad9b8256e537412c825c544dde4d649ae81cfd401d69d7b6a815492e61ace902e530"
+  },
+  "mem_mvjpha2b9apy": {
+    "memberId": "mem_mvjpha2b9apy",
+    "username": "dr_mansour",
+    "phone": "",
+    "emailVerified": true,
+    "lastLoginAt": "2026-10-22T15:54:40.676Z",
+    "salt": "43742d498e6e539280dfafa3c7d4c346",
+    "passwordHash": "0d48e2a8ef70ce50cf9f81b5e861aecb57332850e4db35bc703eed4fbb73333a9e2f1b6d24f00a3f34e6bc7f2b1c1481a9c30062f78b3a01d4dbe603be4acbd0"
+  },
+  "mem_mvjpjaqfaucv": {
+    "memberId": "mem_mvjpjaqfaucv",
+    "username": "sarah_alsayed",
+    "phone": "",
+    "emailVerified": true,
+    "lastLoginAt": "2026-10-22T15:40:35.960Z",
+    "salt": "9be21a82e4b9780ee655411556342009",
+    "passwordHash": "f3f62cee6b430f2557bbc55a5d99ce469d00a3c391f00f391afd911a9909a5860327941d52a0800ecd9c13eaf8ba98b87ff6eef32c1714a32afe87b226d02f8f"
+  }
+}

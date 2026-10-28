@@ -1,0 +1,38 @@
+[
+  {
+    "id": "cmt_1",
+    "topicId": "top_workforce_resilience",
+    "topicTitle": "Hospital Workforce Retention & Combating Clinical Brain Drain",
+    "authorId": "mem_tarek_mansour",
+    "authorName": "Dr. Tarek Mansour",
+    "authorTitle": "Director of Clinical Quality & Patient Safety",
+    "authorOrg": "Specialized Hospitals Network",
+    "content": "Investing in localized nursing academies and clinical leadership mentorship reduced our specialized department turnover by 24% over 18 months.",
+    "status": "approved",
+    "createdAt": "2026-10-21T10:15:00.000Z"
+  },
+  {
+    "id": "cmt_2",
+    "topicId": "top_workforce_resilience",
+    "topicTitle": "Hospital Workforce Retention & Combating Clinical Brain Drain",
+    "authorId": "mem_mona_hegazy",
+    "authorName": "Dr. Mona Hegazy",
+    "authorTitle": "Head of Digital Health & Strategy",
+    "authorOrg": "Digital Health Expert Council",
+    "content": "Digital shift scheduling and transparent overtime governance had an immediate positive impact on ICU team morale and retention.",
+    "status": "pending",
+    "createdAt": "2026-10-24T16:00:00.000Z"
+  },
+  {
+    "id": "cmt_3",
+    "topicId": "top_digital_health_governance",
+    "topicTitle": "Integrating Clinical AI Tools into Hospital Governance & Safety Frameworks",
+    "authorId": "admin_ashraf",
+    "authorName": "Prof. Dr. Ashraf Galal Salem",
+    "authorTitle": "Executive Director & Chief Medical Officer",
+    "authorOrg": "Healthcare Leadership Community",
+    "content": "Every AI decision support algorithm deployed in our acute care wards must have explicit consultant sign-off protocols embedded in the electronic health record.",
+    "status": "approved",
+    "createdAt": "2026-10-22T13:45:00.000Z"
+  }
+]

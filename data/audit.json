@@ -1,0 +1,180 @@
+[
+  {
+    "id": "log_mvqhntcztrzw",
+    "timestamp": "2026-10-27T09:34:07.715Z",
+    "action": "MEMBER_DELETE",
+    "performedBy": "admin",
+    "details": "Deleted member profile: Dr. Tarek Mansour (tarek.mansour@cairohealth.org)"
+  },
+  {
+    "id": "log_mvqhnm8o297f",
+    "timestamp": "2026-10-27T09:33:58.488Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "id": "log_mvqh1jroiq6u",
+    "timestamp": "2026-10-27T09:16:48.852Z",
+    "action": "MEMBER_DELETE",
+    "performedBy": "admin",
+    "details": "Deleted member profile: Dr. Tarek Mansour (tarek.mansour@cairohealth.org)"
+  },
+  {
+    "id": "log_mvqh17trawim",
+    "timestamp": "2026-10-27T09:16:33.375Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "id": "log_mvqfqxnhj7i0",
+    "timestamp": "2026-10-27T08:40:34.013Z",
+    "action": "BRAND_SETTINGS_UPDATE",
+    "performedBy": "admin",
+    "details": "Updated community brand logos (Primary: /assets/aistudio/Academy-logos-01_08a20a13.png, Secondary: /assets/aistudio/Academy-logos-03_a9a4c809.png)"
+  },
+  {
+    "id": "log_mvqfqxky8i4b",
+    "timestamp": "2026-10-27T08:40:33.922Z",
+    "action": "MEMBER_UPDATE",
+    "performedBy": "admin",
+    "details": "Updated profile fields for: Dr. Tarek Mansour"
+  },
+  {
+    "id": "log_mvqfqxk6oxf9",
+    "timestamp": "2026-10-27T08:40:33.894Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "id": "log_mvqfpz6ys4zr",
+    "timestamp": "2026-10-27T08:39:49.354Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "id": "log_mvqevpjspqni",
+    "timestamp": "2026-10-27T08:16:17.176Z",
+    "action": "MEMBER_UPDATE",
+    "performedBy": "admin",
+    "details": "Updated profile fields for: Dr. Tarek Mansour"
+  },
+  {
+    "id": "log_mvqevpj5cjop",
+    "timestamp": "2026-10-27T08:16:17.153Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "id": "log_mvl4c2cea7o9",
+    "timestamp": "2026-10-23T15:22:13.598Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "id": "log_mvl47gi2dmlg",
+    "timestamp": "2026-10-23T15:18:38.666Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "id": "log_mvkzvtoh9dt9",
+    "timestamp": "2026-10-23T13:17:37.409Z",
+    "action": "ROUND_DELETE",
+    "performedBy": "admin",
+    "details": "Deleted leadership round: Test Governance Round (Updated Title)"
+  },
+  {
+    "id": "log_mvkzvtobz1rg",
+    "timestamp": "2026-10-23T13:17:37.403Z",
+    "action": "ROUND_UPDATE",
+    "performedBy": "admin",
+    "details": "Updated leadership round: Test Governance Round (Updated Title)"
+  },
+  {
+    "id": "log_mvkzvto5wy5f",
+    "timestamp": "2026-10-23T13:17:37.397Z",
+    "action": "ROUND_CREATE",
+    "performedBy": "admin",
+    "details": "Created leadership round: Test Governance Round"
+  },
+  {
+    "id": "log_mvkzvtnaouxr",
+    "timestamp": "2026-10-23T13:17:37.366Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "timestamp": "2026-10-22T15:55:07.985Z",
+    "action": "MEMBER_REGISTER",
+    "performedBy": "concurrent_test@sgh.eg",
+    "details": "Registered member application: Concurrent Test {1..5} (Director - SGH) with initial status: Pending"
+  },
+  {
+    "timestamp": "2026-10-22T15:54:40.676Z",
+    "action": "MEMBER_LOGIN",
+    "performedBy": "tarek.mansour@cairohealth.org",
+    "details": "Member logged in. Status: approved"
+  },
+  {
+    "timestamp": "2026-10-22T15:54:35.339Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "timestamp": "2026-10-22T15:40:35.960Z",
+    "action": "MEMBER_LOGIN",
+    "performedBy": "sarah.alsayed@alexhealth.eg",
+    "details": "Member logged in. Status: rejected"
+  },
+  {
+    "timestamp": "2026-10-22T15:40:32.488Z",
+    "action": "MEMBER_LOGIN",
+    "performedBy": "tarek.mansour@cairohealth.org",
+    "details": "Member logged in. Status: approved"
+  },
+  {
+    "timestamp": "2026-10-22T15:40:28.931Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "timestamp": "2026-10-22T15:40:25.715Z",
+    "action": "ADMIN_LOGIN",
+    "performedBy": "Ashrafgalalsalem@gmail.com",
+    "details": "Root Administrator logged in successfully."
+  },
+  {
+    "timestamp": "2026-10-22T15:40:19.247Z",
+    "action": "MEMBER_STATUS_UPDATE",
+    "performedBy": "admin_ashraf",
+    "details": "Updated member Dr. Sarah Al-Sayed (sarah.alsayed@alexhealth.eg) status to rejected."
+  },
+  {
+    "timestamp": "2026-10-22T15:40:10.647Z",
+    "action": "MEMBER_REGISTER",
+    "performedBy": "sarah.alsayed@alexhealth.eg",
+    "details": "Registered member application: Dr. Sarah Al-Sayed (Head of Clinical Learning - Alexandria Healthcare Group) with initial status: Pending"
+  },
+  {
+    "timestamp": "2026-10-22T15:40:02.809Z",
+    "action": "MEMBER_STATUS_UPDATE",
+    "performedBy": "admin_ashraf",
+    "details": "Updated member Dr. Tarek Mansour (tarek.mansour@cairohealth.org) status to approved."
+  },
+  {
+    "timestamp": "2026-10-22T15:38:36.468Z",
+    "action": "MEMBER_REGISTER",
+    "performedBy": "tarek.mansour@cairohealth.org",
+    "details": "Registered member application: Dr. Tarek Mansour (Director of Human Capital & Talent - Cairo Medical City) with initial status: Pending"
+  }
+]
